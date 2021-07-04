@@ -38,4 +38,6 @@ data class NestedProvenance(
      * empty.
      */
     val subRepositories: Map<String, RepositoryProvenance>
-)
+) {
+
+}
