@@ -1,0 +1,20 @@
+containers:
+  build-env:
+    image: adoptopenjdk/openjdk16:alpine-slim
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/ort
+    volumes:
+      - type: cache
+        name: gradle-user-home
+        container: /home/ort/.gradle
+      - local: .
+        container: /usr/local/src/ort
+        options: cached
+    working_directory: /usr/local/src/ort
+
+tasks:
+  installDist:
+    run:
+      container: build-env
+      command: ./gradlew installDist
